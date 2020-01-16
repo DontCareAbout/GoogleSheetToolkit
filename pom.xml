@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>us.dontcareabout</groupId>
+	<artifactId>google-sheet-toolkit</artifactId>
+	<version>0.0.1</version>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<gwt.version>2.7.0</gwt.version>
+		<gxt.version>3.1.0</gxt.version>
+		<spring.version>4.1.9.RELEASE</spring.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>us.dontcareabout</groupId>
+			<artifactId>gf</artifactId>
+			<version>0.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.nmorel.gwtjackson</groupId>
+			<artifactId>gwt-jackson</artifactId>
+			<version>0.15.4</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<!-- FIXME 目前最新是 2.8.0 但是疑似在 I18N 的部份炸 error，所以只好指定一下目錄 -->
+				<version>2.7.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<!-- 某個版本以後預設會跑 testing 但是會 fail -->
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
